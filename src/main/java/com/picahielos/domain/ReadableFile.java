@@ -1,4 +1,4 @@
-package com.picahielos;
+package com.picahielos.domain;
 
 import java.io.*;
 import java.nio.file.Files;

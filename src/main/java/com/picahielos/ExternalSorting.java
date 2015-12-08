@@ -1,5 +1,9 @@
 package com.picahielos;
 
+import com.picahielos.domain.ReadableFile;
+import com.picahielos.utils.FileMerger;
+import com.picahielos.utils.FileSplitter;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -12,8 +16,12 @@ public class ExternalSorting {
         }
 
         List<ReadableFile> outputFiles = null;
+
+        // Let's get as much memory as possible but without running out of it. 0.9 is arbitrary.
+        long memory = (long) (Runtime.getRuntime().freeMemory() * 0.9);
+
         try {
-            outputFiles = FileSplitter.split(new ReadableFile(args[0]), args[1]);
+            outputFiles = FileSplitter.split(new ReadableFile(args[0]), args[1], memory);
         } catch (IOException e) {
             System.out.println("Error processing source file: " + e.getMessage());
             System.exit(1);

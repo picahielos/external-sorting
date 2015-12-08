@@ -1,4 +1,6 @@
-package com.picahielos;
+package com.picahielos.utils;
+
+import com.picahielos.domain.ReadableFile;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
