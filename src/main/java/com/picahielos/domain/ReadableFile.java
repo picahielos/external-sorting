@@ -1,9 +1,10 @@
 package com.picahielos.domain;
 
+import com.picahielos.utils.SortedLineList;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReadableFile implements Comparable<ReadableFile> {
@@ -19,7 +20,7 @@ public class ReadableFile implements Comparable<ReadableFile> {
     }
 
     public List<String> readChunk(long size) throws IOException {
-        List<String> lines = new ArrayList<>();
+        List<String> lines = new SortedLineList();
         String line;
         long remainingSpace = size;
         Integer length;

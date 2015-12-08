@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FileSplitter {
@@ -17,8 +16,6 @@ public class FileSplitter {
         List<String> lines = inputFile.readChunk(size);
 
         while (!lines.isEmpty()) {
-            Collections.sort(lines);
-
             String filename = destinationFilename + i++;
             Files.write(Paths.get(filename), lines);
             outputFiles.add(new ReadableFile(filename));
