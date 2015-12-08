@@ -7,18 +7,32 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Represents a file with some helpers to read it.
+ * When comparing two readable files, we are only concerned about the current line.
+ */
 public class ReadableFile implements Comparable<ReadableFile> {
     private String filename;
     private BufferedReader br;
     private FileReader fr;
     private String currentLine;
 
+    /**
+     * @param filename The name of the file.
+     * @throws FileNotFoundException
+     */
     public ReadableFile(String filename) throws FileNotFoundException {
         this.filename = filename;
         fr = new FileReader(filename);
         br = new BufferedReader(fr);
     }
 
+    /**
+     * Reads a chunk of data.
+     * @param size The size of the data to read.
+     * @return The list of lines read.
+     * @throws IOException
+     */
     public List<String> readChunk(long size) throws IOException {
         List<String> lines = new SortedLineList();
         String line;
@@ -43,6 +57,10 @@ public class ReadableFile implements Comparable<ReadableFile> {
         return lines;
     }
 
+    /**
+     * Returns the current line. If it is null, tries to read next.
+     * @return The line.
+     */
     public String getCurrentLine() {
         if (currentLine == null) {
             readNextLine();
@@ -50,6 +68,9 @@ public class ReadableFile implements Comparable<ReadableFile> {
         return currentLine;
     }
 
+    /**
+     * Reads next line.
+     */
     public void readNextLine() {
         try {
             currentLine = br.readLine();
@@ -57,6 +78,9 @@ public class ReadableFile implements Comparable<ReadableFile> {
         }
     }
 
+    /**
+     * Removes the file.
+     */
     public void remove() {
         try {
             fr.close();

@@ -2,6 +2,9 @@ package com.picahielos.utils;
 
 import java.util.ArrayList;
 
+/**
+ * A list that is sorted when elements are inserted.
+ */
 public class SortedLineList extends ArrayList<String> {
     @Override
     public boolean add(String e) {
